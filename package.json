@@ -1,0 +1,16 @@
+{
+  "name": "expoTut",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "http": "0.0.0",
+    "morgan": "^1.8.1",
+    "path": "^0.12.7",
+    "podcast-parser": "^1.1.2"
+  }
+}
