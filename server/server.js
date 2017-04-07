@@ -15,8 +15,8 @@ app.use(express.static(path.join(__dirname, '../')));
 var podcastParser = require('podcast-parser');
 
 app.post('/api/podcastParse', (req, res) => {
-  console.log('req body :', req.params);
-  var feedUrl = req.params.url;
+  console.log('req body :', req.body);
+  var feedUrl = req.body.url;
   podcastParser.execute(feedUrl, {},
     function (err, response) {
       if (err) {
