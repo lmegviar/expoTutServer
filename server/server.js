@@ -23,8 +23,13 @@ app.post('/api/podcastParse', (req, res) => {
         console.log(err);
         return res.send(err);
       }
-      console.log('Channel/Items/0 ', response.channel.items[0]);
-      res.send(JSON.stringify(response.channel.items[0]));
+
+      let data = response.channel.items[0];
+      delete data.description;
+
+      console.log('Channel/Items/0 ', data);
+
+      res.send(JSON.stringify(data));
     });
 });
 
