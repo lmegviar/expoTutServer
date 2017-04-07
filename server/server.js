@@ -15,14 +15,13 @@ app.use(express.static(path.join(__dirname, '../')));
 var podcastParser = require('podcast-parser');
 
 app.post('/api/podcastParse', (req, res) => {
-  var feedUrl = req.feedUrl;
+  var feedUrl = req.body.feedUrl;
   console.log('Feed URL: ', feedUrl);
-  podcastParser.execute( feedUrl, {},
+  podcastParser.execute(feedUrl, {},
     function (err, res) {
           if (err) {
               console.log(err);
-              res.send(err);
-              return;
+              return res.send(err);
           }
           console.log('Channel/Items/0 ', JSON.stringify(res.channel.items[0]));
           res.send(res.channel.items[0]);
@@ -44,3 +43,7 @@ const server = app.listen(port, () => {
   const { address, port } = server.address();
   console.log(`Listening at http://${address}:${port}`);
 });
+
+
+
+

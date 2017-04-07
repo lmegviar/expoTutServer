@@ -2,8 +2,9 @@
   "name": "expoTut",
   "version": "0.0.1",
   "private": true,
+  "main": "./server/server.js",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node ./server/server.js"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
