@@ -15,17 +15,17 @@ app.use(express.static(path.join(__dirname, '../')));
 var podcastParser = require('podcast-parser');
 
 app.post('/api/podcastParse', (req, res) => {
-  var feedUrl = req.body.feedUrl.trim();
+  var feedUrl = req.body.feedUrl;
   console.log('Feed URL: ', feedUrl);
   podcastParser.execute(feedUrl, {},
     function (err, response) {
-          if (err) {
-              console.log(err);
-              return res.send(err);
-          }
-          console.log('Channel/Items/0 ', JSON.stringify(response.channel.items[0]));
-          res.json(response.channel.items[0]);
-      });
+      if (err) {
+        console.log(err);
+        return res.send(err);
+      }
+      console.log('Channel/Items/0 ', response.channel.items[0]);
+      res.send(JSON.stringify(response.channel.items[0]));
+    });
 });
 
 // podcastParser.execute( 'http://blackastronautspodcast.libsyn.com/rss', {},
