@@ -24,7 +24,7 @@ app.post('/api/podcastParse', (req, res) => {
               return res.send(err);
           }
           console.log('Channel/Items/0 ', JSON.stringify(response.channel.items[0]));
-          res.send(response.channel.items[0]);
+          res.json(response.channel.items[0]);
       });
 });
 
