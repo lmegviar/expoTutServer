@@ -15,16 +15,16 @@ app.use(express.static(path.join(__dirname, '../')));
 var podcastParser = require('podcast-parser');
 
 app.post('/api/podcastParse', (req, res) => {
-  var feedUrl = req.body.feedUrl;
+  var feedUrl = req.body.feedUrl.trim();
   console.log('Feed URL: ', feedUrl);
   podcastParser.execute(feedUrl, {},
-    function (err, res) {
+    function (err, response) {
           if (err) {
               console.log(err);
               return res.send(err);
           }
-          console.log('Channel/Items/0 ', JSON.stringify(res.channel.items[0]));
-          res.send(res.channel.items[0]);
+          console.log('Channel/Items/0 ', JSON.stringify(response.channel.items[0]));
+          res.send(response.channel.items[0]);
       });
 });
 
@@ -38,7 +38,7 @@ app.post('/api/podcastParse', (req, res) => {
 //     });
 
 // Listen
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 1337;
 const server = app.listen(port, () => {
   const { address, port } = server.address();
   console.log(`Listening at http://${address}:${port}`);
